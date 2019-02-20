@@ -53,7 +53,7 @@ loadCountry();
 loadYear();
 loadYear2 ();
 ctSelector.addEventListener ("change", loadIndicator)
-window.filterData ("MEX","Empleo de tiempo parcial, mujeres (% del total de mujeres empleadas)", "2016")
+//window.filterData ("MEX","Empleo de tiempo parcial, mujeres (% del total de mujeres empleadas)", "2016")
 
 //Función para botón buscar, cambiar de pantalla
 
@@ -69,24 +69,23 @@ const showResults = () => {  // mostrar resultados
     const countries = document.getElementById("country").value; 
      const indicators = document.getElementById("select-indicator").value;
      const sinceYears = document.getElementById("since-year").value;
-     //const untilYears = document.getElementById("until-year").value;
+     const untilYears = document.getElementById("until-year").value;
      let result; 
-     
+     console.log (result);
     
     result = filterData (countries, indicators,sinceYears); 
-    document.getElementById("results").innerHTL = result;
+    document.getElementById("filter").value = result;
    
 }
 //document.getElementById("search").addEventListener ("click",showResults);
 
-
-// bOTON PARA PASAR A LA PAGINA SIGUIENTE
-const search = () => {
-    document.getElementById("choose-data").style.display = "none";
-    document.getElementById("results").style.display = "inline";
+const hideShow = (hide,show) => {
+    document.getElementById(hide).style.display = "none";
+    document.getElementById(show).style.display = "inline";
 }
 
-    document.getElementById("search").addEventListener ("click", search);
+const search = () => {
+    document.getElementById("search").addEventListener ("click", hideShow("choose-data","results"));
     //document.getElementById("search").addEventListener ("click", showResults);
 
-
+}

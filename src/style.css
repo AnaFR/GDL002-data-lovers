@@ -1,0 +1,257 @@
+*, *:before, *:after {
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box; 
+	box-sizing: border-box;
+	text-align: center;
+	font-family: 'Hind', sans-serif;
+}
+
+body{
+	margin: 0;
+}
+
+/*#root {
+	margin: 6rem;
+	background-image: url();
+}*/
+
+header {
+	color: #ffff;
+	background-image: url('assets/niña-mirada-fija-background.jpg');
+	height: 600px;
+  	/* Center and scale the image nicely */
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	padding-bottom: -10rem;
+}
+
+
+#logo-container{
+	padding-top: 3.25rem;
+	padding-bottom: 5rem;
+}
+
+#logo-banco-mundial {
+	margin-bottom: 0;
+	max-width: 300px;
+}
+
+
+#choose-data-inner {
+	color: #ffff;
+	background-image: url('assets/mujer-latinoamericana-sombrero-vendedora.jpg');
+	height: 100%;
+  	/* Center and scale the image nicely */
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	padding: 3rem;
+}
+
+.credits {
+	padding: 7rem 1rem 3rem 1rem;
+}
+
+.credits p {
+	font-size: 1.1rem;
+	color: #626262;
+
+}
+
+
+.credits-logos{
+	height: 100%
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	height: 8rem;
+	font-weight: 200;
+	margin-bottom: 3rem;
+}
+
+.credits-logos img {
+	margin: 1.25rem;
+	max-width: 180px;
+	display: inline-block;
+
+}
+
+section label{
+	display: inline-block; 
+	margin: 2rem auto;
+}
+
+.label-title {
+	margin-bottom: -2.5rem;
+}
+
+section option {
+	max-width: 600px;
+}
+
+
+h1 {
+	margin-top: 0;
+	font-size: 2.3rem;
+	font-weight: 600;
+	color: #ffff;
+}
+
+h2 {
+	font-size: 1.75rem;
+	font-weight: 400;
+}
+
+p, label {
+	font-size: 1.15rem;
+	font-weight: 300;
+	/*color: #ffff;*/
+}
+p strong {
+	font-weight: 500;
+}
+
+a {
+	color: #cd7ce7;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #f999f3;
+}
+
+header h2 {
+	color: #ffff;
+}
+
+header p{
+	padding-right: 10rem;
+	padding-left: 10rem;
+}
+
+#choose-data {
+	
+}
+
+select {
+	padding: .35rem 3rem .35rem .5rem;
+	background-color: #ffff;
+	border: none;
+	border-radius: 5px;
+	background: url(assets/select-arrow.png) no-repeat right #ddd;
+	-webkit-appearance: none;
+	text-align: left;
+}
+
+.button-purple {
+	width: 190px;
+	font-weight: 500;
+	font-size: 1.35rem;
+	color: #ffff;
+	background-color: #9d00d0;
+	padding: .35rem 1rem;
+	border: none;
+	border-radius: 5px;
+	margin: 1.5rem auto;
+	text-align: center;
+	cursor: pointer;
+}
+
+.button-purple:hover {
+	
+	background-color: #fa99f3;
+}
+
+#results {
+	text-align: left;
+	padding: 3rem;
+}
+#results h2 {
+	text-align: left;
+
+}
+
+table {
+	text-align: left !important;
+	border: 1px solid;
+	width: 500px;
+}
+
+table caption {
+		text-align: left;
+}
+
+table th,  td {
+		border: 1px solid;
+		padding: 1rem;
+		text-align: left;
+
+}
+
+footer {
+
+	color: #ffff;
+	height: 100%;
+  	/* Center and scale the image nicely */
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	padding: 3.5rem 8rem 0.5rem 8rem;
+	background-color: #242424;
+	width: 100%;
+	margin: 0;
+}
+
+footer p {
+	font-size: .85rem;
+}
+
+
+/* For mobile phones: */
+@media only screen and (max-width: 768px) {
+
+#logo-banco-mundial {
+	max-width: 265px;
+}
+
+section option {
+	max-width: 300px;
+}
+
+header {
+	padding: 1rem !important;
+	height: 100%
+}
+
+
+header p{
+	padding-right: .5rem;
+	padding-left: .5rem;
+}
+
+#logo-container{
+	padding-top:1;
+	padding-bottom: 1rem;
+}
+
+section label{
+	display: block;
+	margin: 1.2rem auto;
+}
+
+.credits-logos {
+	height: 100%;
+	display: block;
+}
+
+footer {
+	padding: 1rem;
+}
+
+
+}

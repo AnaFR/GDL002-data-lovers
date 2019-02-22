@@ -2,18 +2,31 @@ const ctSelector = document.getElementById("select-country") ;   // llamar el se
 const indSelector = document.getElementById("select-indicator"); // Declarar una variable para que me genere los indicadores de los paises
 const yrSelector = document.getElementById("since-year"); // Declarar una variable para que me genere el rango de los años automaticamente en mi selector para año 
 const ctNameToCtCode = {}; // Declarar una variable con un objeto vacío (le llamaría mapa tecnicamente es  correcto por que no hablo de estructura (no es objetos lo que almancena, si no la relacion de nombre de paías a codigo de país  ))
+const indicatorNameToIndicatorCode ={};
 
+// Función para cargar países
+const loadCountry = (loadIndicator) => {//El parámetro es la funcion loadIndicator 
+    //const ctOptions = Object.keys(WORLDBANK) ;  // Declarar una variable que traiga los Object.keys de mi objeto global(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
+    //console.log(ctOptions);
+    for (let i = 0; i < Object.keys(WORLDBANK).length; i++) {  // itera en las keys
+        console.log(i);
+        const ctCode = Object.keys(WORLDBANK)[i]; //trae el indice de cada key
+        console.log(ctCode);
+        //const ctName = WORLDBANK[ctCode].indicators[0].countryName; //trae el valor del countryName
 
-// Función para país
-const loadCountry = (loadIndicator) => {  // Declarar una función para que me genere las opciones de paises, y que me genere automaticamente mis opciones de indicadpres por país (se escribe como argumento y despues se va a declarar como función)
-    const ctOptions = Object.keys(WORLDBANK) ;  // Declarar una variable que traiga los Object.keys de mi objeto global(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
-    for (let i = 0; i < ctOptions.length; i++) {  // ciclo for 
-        const ctCode = ctOptions[i]; // Declarar una variable que traiga el indice
-        const ctName = WORLDBANK[ctCode].indicators[0].countryName;
-        ctNameToCtCode[ctName] = ctCode;
-        ctSelector.options[i + 1] = new Option(ctName, i + 1);
+        ctNameToCtCode[WORLDBANK[ctCode].indicators[0].countryName] = ctCode; //cambia el indice por el nombre del pais
+        
+        console.log(ctNameToCtCode);
+
+        ctSelector.options[i + 1] = new Option(WORLDBANK[ctCode].indicators[0].countryName, i + 1);
     }
 };
+
+
+
+// 1. traer las 4 keys
+// 2. traer los indicator
+
 
 // user actions 
 // Función para año desde 
@@ -42,6 +55,10 @@ const loadIndicator = (userActionEvent) => {
         const indicatorName = countryIndicators [i].indicatorName;
 
         indSelector.options [i+1] = new Option (indicatorName, i +1);
+
+        // if (i=0){
+        //     indSelector.options = 
+        // }
     }
    
 };

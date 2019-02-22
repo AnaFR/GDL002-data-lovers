@@ -10,9 +10,9 @@ const indicatorNameToIndicatorCode ={};
 const loadCountry = (loadIndicator) => {//El parámetro es la funcion loadIndicator 
 
     for (let i = 0; i < Object.keys(WORLDBANK).length; i++) {  // itera en las keys
-        console.log(i);
+        //console.log(i);
         const ctCode = Object.keys(WORLDBANK)[i]; //trae el indice de cada key
-        console.log(ctCode);
+        //console.log(ctCode);
 
         ctNameToCtCode[WORLDBANK[ctCode].indicators[0].countryName] = ctCode; 
         //crea la propiedad Name y le da el valor del código en el objeto ctNameToCtCode
@@ -43,6 +43,8 @@ const loadYear2 = () => {
 };
 
 
+
+
 // Función para indicadores 
 const loadIndicator = (userActionEvent) => { 
     //indSelector.options= [];
@@ -62,12 +64,12 @@ const loadIndicator = (userActionEvent) => {
 
         const getIndicatorCode = countryIndicators[i].indicatorName;//trae el nombre de cada indice de los indicadores
 
-        indicatorNameToIndicatorCode[getIndicatorName] = getIndicatorCode;
+        indicatorNameToIndicatorCode[getIndicatorCode] = getIndicatorName;
         //crea la propiedad indicatorCode y le asigna el valor de indicatorName en el objeto indicatorNameToIndicatorCode
 
         console.log(indicatorNameToIndicatorCode);
 
-        indSelector.options [i+1] = new Option (getIndicatorName, i +1);
+        indSelector.options [i+1] = new Option (getIndicatorCode, i +1);
 
 
 
@@ -91,24 +93,26 @@ ctSelector.addEventListener ("change", loadIndicator)
 
 const showResults = () => {  // mostrar resultados
     const selectedCountryID = ctSelector.value;
-    const countryName =  ctSelector.options[selectedCountryID].innerHTML;
-    const countryCode= ctNameToCtCode[countryName];
-   
+    const countryName =  ctSelector.options[selectedCountryID].innerHTML; //nombre del pais como fue escogido por el usuario
+
+    //console.log(countryName);
+
+    const countryCode= ctNameToCtCode[countryName]; //codigo del pais tomado del objeto creado ctNameToCtCode
+    //console.log(countryCode);
     
     // const indicatorsID = indSelector.value;
     // const indicatorName = indSelector.options[indicatorsID].innerHTML;
       
-  const indicatorsID = indSelector.value;
-     const indicatorName = indSelector.options[indicatorsID].innerHTML;
-      
-    
-    const sinceYearsID = yrSelector.value;
-    const yearNumber = yrSelector.options[sinceYearsID].innerHTML;
+const indicatorsID = parseInt(indSelector.value);
+//console.log(indicatorsID); //codigo del indicador como fue escogido por el usuario
+const indicatorName = indSelector.options[indicatorsID].innerHTML;
+const sinceYearsID = yrSelector.value;
+const yearNumber = yrSelector.options[sinceYearsID].innerHTML;
 
 
     
     //const untilYears = document.getElementById("until-year").value;
-     result = filterData (countryCode, indicatorName, yearNumber); 
+     result = filterData (countryCode, indicatorsID, yearNumber); 
      document.getElementById("indicator-result").innerHTML = `<strong>Nombre del Indicador:</strong> ${indicatorName}<br>`;
     document.getElementById("figure-result").innerHTML =`<strong>Cantidad o porcentaje:</strong> ${result}<br>`;
     document.getElementById("year-result").innerHTML = `<strong>Año buscado:</strong> ${yearNumber}<br>`;

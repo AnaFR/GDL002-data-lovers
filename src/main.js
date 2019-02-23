@@ -1,33 +1,51 @@
 const ctSelector = document.getElementById("select-country") ;   // llamar el selector de país
 const indSelector = document.getElementById("select-indicator"); // Declarar una variable para que me genere los indicadores de los paises
 const yrSelector = document.getElementById("since-year"); // Declarar una variable para que me genere el rango de los años automaticamente en mi selector para año 
-const ctNameToCtCode = {}; //objeto creado para almacenar los nombres de los países Perú:PER
-const indicatorNameToIndicatorCode ={};
-
-//  indicatorNameToIndicatorCode[WORLDBANK[ctCode].indicators[0].indicatorName] = 
+const countryNameToCountryCode = {}; //objeto creado para almacenar los nombres de los países y hacer cambio Perú:PER
+const indicatorNameToIndicatorCode ={}; //objeto creado para almacenar los nombres de los indicadores y hacer cambio nombre:código
 
 // Función para cargar países
 const loadCountry = (loadIndicator) => {//El parámetro es la funcion loadIndicator 
 
     for (let i = 0; i < Object.keys(WORLDBANK).length; i++) {  // itera en las keys
-        //console.log(i);
         const ctCode = Object.keys(WORLDBANK)[i]; //trae el indice de cada key
-        //console.log(ctCode);
-
-        ctNameToCtCode[WORLDBANK[ctCode].indicators[0].countryName] = ctCode; 
-        //crea la propiedad Name y le da el valor del código en el objeto ctNameToCtCode
-
-        console.log(ctNameToCtCode);
-
-        ctSelector.options[i + 1] = new Option(WORLDBANK[ctCode].indicators[0].countryName, i + 1); //
+        countryNameToCountryCode[WORLDBANK[ctCode].indicators[0].countryName] = ctCode; 
+        //crea la propiedad Name y le da el valor del código en el objeto countryNameToCountryCode
+        ctSelector.options[i + 1] = new Option(WORLDBANK[ctCode].indicators[0].countryName, i + 1); 
+        //empuja cada nombre del país a cada opción del selector "país"
     }
 };
 
 
+// Función para cargar indicadores 
+const loadIndicator = (countrySelectedByUser) => { 
+    const countrySelected = ctSelector.options[countrySelectedByUser.target.value].innerHTML;
+    //trae el valor de País seleccionado por el usuario del selector "país"
+    const countryIndicators = WORLDBANK[countryNameToCountryCode[countrySelected]].indicators; 
+    //llama el valor seleccionado del objeto countryNameToCountryCode,cambia Perú por PER y trae sus indicadores
+    for (let i =0; i < countryIndicators.length; i++) {;//itera en los índices de los indicadores
+        //console.log(i);
+
+        const indicatorIdx = countryIndicators[i];
+        //console.log(indicatorIdx);
+
+        const getIndicatorName = countryIndicators[i].indicatorCode;
+        //trae el código de cada indice de los indicadores
+        const getIndicatorCode = countryIndicators[i].indicatorName;
+        //trae el nombre de cada indice de los indicadores
+
+        indicatorNameToIndicatorCode[getIndicatorCode] = getIndicatorName;
+        //crea la propiedad indicatorCode y le asigna el valor de indicatorName en el objeto indicatorNameToIndicatorCode
+
+        //console.log(indicatorNameToIndicatorCode);
+
+        indSelector.options [i+1] = new Option (getIndicatorCode, i +1);
+    }
+   
+};
 
 
-// user actions 
-// Función para año desde 
+// Función para cargar años al selector de año desde
 const loadYear = () => { 
     for (let i = 1960; i <= 2017 ; i++) { // Implementar el ciclo para indicar los años
         yrSelector.options[i - 1959] = new Option(i, i - 1959); // se utiliza la resta para saltarme la opción seleccionar de mi html (ya que no es parte de mi objeto )
@@ -43,48 +61,31 @@ const loadYear2 = () => {
 };
 
 
+////////////FUNCION CARGAR AÑOS DE CLAUDIA///////////////////////////
+// const loadYearClaudia =(indicatorSelectedByUser, selectorId) => {
+
+//     const indicatorSelected = indSelector.options[indicatorSelectedByUser.target.value].innerHTML;
+//     //trae valor de indicador seleccionado por el usuario
+
+//     const dataFromIndicator = WORLDBANK[countryNameToCountryCode[countrySelected]].indicators[indicatorSelected].data;
+
+//     for (let i=dataFromIndicator[0]; i<=dataFromIndicator.length; i++ ) {
+
+//         const yearSelectorToLoad = document.getElementById(selectorId).options [i+1] = new Option(i);
+//     }
+
+// };
+//////////////////////////////////////////////////////////////////////
 
 
-// Función para indicadores 
-const loadIndicator = (userActionEvent) => { 
-    //indSelector.options= [];
-    //indSelector.options [0] = new Option ("Seleccionar", 0);
-    const countrySelected = ctSelector.options[userActionEvent.target.value].innerHTML;//trae el valor de País seleccionado por el usuario
-    const countryIndicators = WORLDBANK[ctNameToCtCode[countrySelected]].indicators; 
-    //llama el valor seleccionado del objeto ctNameToCtCode,cambia Perú por PER y trae sus indicadores
-    for (let i =0; i < countryIndicators.length; i++) {;//itera en los índices de los indicadores
-        //console.log(i);
-
-        const indicatorIdx = countryIndicators[i];
-        //console.log(indicatorIdx);
-
-
-
-        const getIndicatorName = countryIndicators[i].indicatorCode;//trae el código de cada indice de los indicadores
-
-        const getIndicatorCode = countryIndicators[i].indicatorName;//trae el nombre de cada indice de los indicadores
-
-        indicatorNameToIndicatorCode[getIndicatorCode] = getIndicatorName;
-        //crea la propiedad indicatorCode y le asigna el valor de indicatorName en el objeto indicatorNameToIndicatorCode
-
-        console.log(indicatorNameToIndicatorCode);
-
-        indSelector.options [i+1] = new Option (getIndicatorCode, i +1);
-
-
-
-        // if (i=0){
-        //     indSelector.options = 
-        // }
-    }
-   
-};
-
-// begining page selectors loading
+// invocar funciones para iniciar
 loadCountry();
 loadYear();
 loadYear2 ();
 ctSelector.addEventListener ("change", loadIndicator) 
+
+//FUNCION CARGAR AÑOS DE CLAUDIA
+//indSelector.addEventListener("change", loadYearClaudia)
 
 
 
@@ -97,7 +98,7 @@ const showResults = () => {  // mostrar resultados
 
     //console.log(countryName);
 
-    const countryCode= ctNameToCtCode[countryName]; //codigo del pais tomado del objeto creado ctNameToCtCode
+    const countryCode= countryNameToCountryCode[countryName]; //codigo del pais tomado del objeto creado countryNameToCountryCode
     //console.log(countryCode);
     
     // const indicatorsID = indSelector.value;

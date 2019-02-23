@@ -18,12 +18,12 @@ body{
 header {
 	color: #ffff;
 	background-image: url('assets/niña-mirada-fija-background.jpg');
-	height: 600px;
+	height: auto;
   	/* Center and scale the image nicely */
   	background-position: center;
   	background-repeat: no-repeat;
   	background-size: cover;
-  	padding-bottom: -10rem;
+  	padding-bottom: 1rem;
 }
 
 
@@ -99,12 +99,19 @@ h1 {
 	margin-top: 0;
 	font-size: 2.3rem;
 	font-weight: 600;
-	color: #ffff;
+	color: #cd7ce7;
+	text-shadow: 3px -3px 12px #000000;
 }
 
 h2 {
 	font-size: 1.75rem;
 	font-weight: 400;
+}
+
+h3 {
+	font-size: 1.35rem;
+	font-weight: 400;
+
 }
 
 p, label {

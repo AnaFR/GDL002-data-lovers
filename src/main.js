@@ -8,9 +8,9 @@ const indicatorNameToIndicatorCode ={}; //objeto creado para almacenar los nombr
 const loadCountry = (loadIndicator) => {//El parámetro es la funcion loadIndicator 
 
     for (let i = 0; i < Object.keys(WORLDBANK).length; i++) {  // itera en las keys
-        const ctCode = Object.keys(WORLDBANK)[i]; //trae el indice de cada key
+        const ctCode = Object.keys(WORLDBANK)[i]; //trae cada key, que es el código del país PER BRA MEX CHL
         countryNameToCountryCode[WORLDBANK[ctCode].indicators[0].countryName] = ctCode; 
-        //crea la propiedad Name y le da el valor del código en el objeto countryNameToCountryCode
+        //crea la propiedad con el nombre del país y le da el valor del código del país en el objeto countryNameToCountryCode
         ctSelector.options[i + 1] = new Option(WORLDBANK[ctCode].indicators[0].countryName, i + 1); 
         //empuja cada nombre del país a cada opción del selector "país"
     }
